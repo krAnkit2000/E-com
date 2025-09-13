@@ -1,16 +1,4 @@
-/* src/components/Header.css */
-/* .header {
-  height: fit-content;
 
-  background-color: #e9e5e4;
-  color: white;
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%; 
-  box-sizing: border-box; 
-} */
 
 .header {
   position: fixed;         /* 👈 header ko fix kar diya */
@@ -139,7 +127,7 @@
 }
 
 .logo.product-list a {
-  background: linear-gradient(45deg, rgb(247, 247, 247), orange, rgb(2, 232, 248), green, rgb(39, 175, 112), rgb(253, 111, 253));
+  background: linear-gradient(45deg, rgb(27, 2, 255), rgb(255, 5, 26), rgb(0, 255, 21), rgb(239, 199, 69), rgb(2, 10, 12), rgb(48, 4, 48));
   -webkit-background-clip: text; /* Required for WebKit-based browsers (like Chrome and Safari) */
   color: transparent; /* Make text color transparent so gradient shows through */
   animation: rainbow 5s ease infinite; /* Animation for color change */
