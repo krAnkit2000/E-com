@@ -1,10 +1,11 @@
 .delivery-container {
-  max-width: 500px;
-  margin: 3rem auto;
-  padding: 2rem;
-  background: white;
+  border-radius: 2rem;
+  max-width: 23rem;
+  margin: 6rem auto;
+  padding: 1rem;
+  background: #ffffff;
   border-radius: 10px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  box-shadow: 1px 1px 17px 16px rgba(0, 0, 0, 0.1);
 }
 
 .delivery-container h2 {
@@ -51,4 +52,7 @@
 
 .btn-submit:hover {
   background-color: #218838;
+}
+.Icon{
+  margin: -4px 3px -5px 0px;   
 }
