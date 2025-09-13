@@ -1,5 +1,5 @@
 .delivery-container {
-    padding-block-end: 3rem;
+    padding-block: 4rem;
     margin-top: 5rem;
     max-width: 19rem;
     /* margin: 50px auto; */
@@ -11,9 +11,9 @@
 }
   
   .modal-img {
-    width: 134px;
-    height: 136px;
-    margin-bottom: 7px;
+    width: 15rem;
+    height: 15rem;
+    margin-bottom: 2rem;
   }
   
   h2 {
@@ -40,5 +40,5 @@
   }
   
   .btn-close:hover {
-    background-color: #2563eb;
+    background-color: #315ab2;
   }
