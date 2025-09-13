@@ -14,9 +14,9 @@ const Header = ({ isLoggedIn, setIsLoggedIn, username, setUsername }) => {
 
   return (
     <header className="header"> 
-      <div className="logo product-list">
-        <Link to="/">E-commerce</Link>
-      </div>
+    <div className="logo product-list" style={{ display: 'inline-flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+    <Link to="/">FashionHive</Link> <span>🛒🛍️✨</span>
+  </div>
 
       <div className="nav">
         <Link to="/"><img
