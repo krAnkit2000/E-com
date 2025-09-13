@@ -47,16 +47,17 @@
 }
 
 .btn-logout {
-  background-color: #dc3545;
-  color: white;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
+  background: none;
   cursor: pointer;
 }
 
 .btn-logout:hover {
-  background-color: #c82333;
+
+  /* padding: 2px; */
+  /* height: 30px; */
+  background-color: #ad404b;
+  border-radius: 10px;
 }
 
 .btn-login, .btn-signup {
@@ -80,7 +81,7 @@
 @media (max-width: 768px) {
   .header {
     flex-direction: flex;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .nav {
@@ -88,11 +89,14 @@
     gap: 0.5rem;
     width: 100%;
     margin-top: 1rem;
+    display: flex;
+        align-items: center;
+        justify-content: end;
   }
 
-  .profile {
+  /* .profile {
     margin-top: 1rem;
-  }
+  } */
 
   .btn-login, .btn-signup, .btn-logout {
     width: 30%;
