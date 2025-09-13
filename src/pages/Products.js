@@ -40,7 +40,7 @@ const Products = ({ addToCart }) => {
 
   return (
     <div className='all-Product'>
-      <h2>All Products</h2>
+      <h2 className='all-Product'>All Products</h2>
 
       {/* Grid of products */}
       <div

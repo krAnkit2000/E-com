@@ -2,6 +2,7 @@
 
 /* General styling */
 .cart-container {
+  margin-block-start: 3rem;
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
@@ -97,7 +98,7 @@
 
 /* Empty Cart Icon */
 .emptycart-icon {
-    /* margin-block: 12rem !important; */
+    margin-block: 10rem !important ;
   width: 200px;
   height: auto;
   display: block;
