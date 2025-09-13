@@ -55,10 +55,17 @@ const Cart = ({ cartItems, removeFromCart, clearCart, isLoggedIn }) => {
           <h3>Total: {formatINR(total)}</h3>
 
           <div className="cart-buttons">
-            <button onClick={clearCart} className="btn-clear">
-              Clear Cart
-            </button>
 
+            <button
+            onClick={() => {
+              if (window.confirm("Are you sure you want to  🧹 clear the cart?")) {
+                clearCart();
+              }
+            }}
+            className="btn-clear"
+          >
+            Clear Cart
+          </button>
             <button onClick={handlePlaceOrder} className="btn-place-order">
               Place Order
             </button>

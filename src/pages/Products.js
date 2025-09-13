@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import ProductCard from '../components/ProductCard';
-
 import './Product.css';
 
 
 
-const sampleProducts = Array.from({ length: 1000 }, (_, i) => ({
+
+const sampleProducts = Array.from({ length: 10000 }, (_, i) => ({
   id: i + 1,
   name: `Product ${i + 1}`,  // Ensure the product name follows sequence (Product 1, Product 2, ...)
   price: (Math.random() * 100 + 10).toFixed(2),
@@ -15,7 +15,7 @@ const sampleProducts = Array.from({ length: 1000 }, (_, i) => ({
 const Products = ({ addToCart }) => {
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 28;  // Show 20 products per page
+  const itemsPerPage = 30;  // Show 20 products per page
 
   // Calculate the index range for the current page
   const indexOfLastProduct = currentPage * itemsPerPage;
@@ -43,13 +43,7 @@ const Products = ({ addToCart }) => {
       <h2 className='all-Product'>All Products</h2>
 
       {/* Grid of products */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-          gap: '1rem',
-        }}
-      >
+      <div className='product-list'>
         {currentProducts.map((product) => (
           <ProductCard key={product.id} product={product} addToCart={addToCart} />
         ))}

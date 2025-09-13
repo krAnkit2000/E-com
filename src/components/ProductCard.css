@@ -46,3 +46,17 @@
 .btn-add-to-cart:hover {
   background-color: #457df7;
 }
+.product-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;        
+  object-fit: cover;         
+  border-radius: 8px;
+  background-color: #f9f9f9;  
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-img:hover {
+  transform: scale(1.05);    
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+}
