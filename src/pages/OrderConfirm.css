@@ -2,8 +2,9 @@
     padding-block: 4rem;
     margin-top: 5rem;
     max-width: 19rem;
-    /* margin: 50px auto; */
-    padding: 10px;
+    padding-block-end: 4rem !important;
+   
+
     background: #f9fafb;
     border-radius: 12px;
     box-shadow: 3px 10px 10px 10px rgba(10, 5, 5, 0.1);
