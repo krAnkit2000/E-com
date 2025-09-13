@@ -1,0 +1,140 @@
+/* src/components/Header.css */
+.header {
+  height: fit-content;
+
+  background-color: #e9e5e4;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Make header take full width */
+  box-sizing: border-box; /* Include padding in the width */
+}
+
+.logo a {
+  font-size: 1.5rem;
+  color: white;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.nav a:hover {
+  background-color: #0056b3;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile span {
+  font-size: 1rem;
+}
+
+.btn-logout {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-logout:hover {
+  background-color: #c82333;
+}
+
+.btn-login, .btn-signup {
+  background-color: #28a745;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.btn-login:hover, .btn-signup:hover {
+  background-color: #218838;
+}
+
+.Icon {
+  width: 30px;
+  height: 30px;
+}
+
+/* Make the header more responsive */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: flex;
+    align-items: flex-start;
+  }
+
+  .nav {
+    flex-direction: flex;
+    gap: 0.5rem;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .profile {
+    margin-top: 1rem;
+  }
+
+  .btn-login, .btn-signup, .btn-logout {
+    width: 30%;
+    padding: 0;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo a {
+    font-size: 1.2rem; /* Smaller logo on small screens */
+  }
+
+  .nav a {
+    padding: 0.5rem; /* Slightly reduced padding */
+    font-weight: 700;
+    font-size: 12px;
+  }
+}
+/* Logo with animated rainbow effect */
+.logo.product-list {
+  font-size: 3rem; /* Adjust font size as needed */
+  font-weight: bold;
+}
+
+.logo.product-list a {
+  background: linear-gradient(45deg, rgb(247, 247, 247), orange, rgb(2, 232, 248), green, rgb(39, 175, 112), rgb(253, 111, 253));
+  -webkit-background-clip: text; /* Required for WebKit-based browsers (like Chrome and Safari) */
+  color: transparent; /* Make text color transparent so gradient shows through */
+  animation: rainbow 5s ease infinite; /* Animation for color change */
+  background-size: 300% 300%; /* Make gradient large to animate smoothly */
+}
+
+/* Keyframes for the rainbow effect */
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
