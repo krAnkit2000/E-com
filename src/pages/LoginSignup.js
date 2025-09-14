@@ -46,7 +46,7 @@ const LoginSignup = ({ setIsLoggedIn, setUsername }) => {
         sessionStorage.removeItem('fromCart');
         navigate('/cart'); // Redirect to the cart if the user was there
       } else {
-        navigate('/delivery'); // Redirect to the delivery page
+        navigate('/');  // Redirect to the delivery page
       }
     } else {
       alert('Invalid username or password');

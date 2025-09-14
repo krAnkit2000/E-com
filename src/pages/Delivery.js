@@ -107,12 +107,8 @@ const Delivery = ({ cartItems, clearCart }) => {
   return (
     <div className="delivery-container">
       <h2>
-        <img
-          src="https://cdn-icons-png.freepik.com/512/4805/4805735.png"
-          alt="Cart Icon"
-          className="Icon logout-icon"
-        />
-        Delivery Details
+    
+      𝐒𝐡𝐢𝐩𝐩𝐢𝐧𝐠 𝐃𝐞𝐭𝐚𝐢𝐥𝐬 🚛
       </h2>
 
       <form onSubmit={handleSubmit} className="delivery-form">

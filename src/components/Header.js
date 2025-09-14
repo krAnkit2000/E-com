@@ -1,60 +1,62 @@
 // src/components/Header.js
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
 
 const Header = ({ isLoggedIn, setIsLoggedIn, username, setUsername }) => {
+  const navigate = useNavigate();
+
   const handleLogout = () => {
     setIsLoggedIn(false);
     setUsername('');
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('username');
     alert('You have logged out');
+    navigate('/'); // logout ke baad home page pe bhejna
   };
 
   return (
     <header className="header"> 
-    <div className="logo product-list">
-    <Link to="/">FashionHive</Link> 
-  </div>
+      {/* Logo */}
+      <div className="logo product-list">
+        <Link to="/">FashionHive</Link> 
+      </div>
 
+      {/* Navigation Section */}
       <div className="nav">
-        <Link to="/"><img
-          src="https://cdn-icons-png.freepik.com/512/13012/13012364.png?ga=GA1.1.1808598779.1757661919" // home
-          alt="Cart Icon"
-          className=" Icon Home-icon"
-        /></Link>
-        <Link to="/cart">
-        <img
-          src="https://cdn-icons-png.freepik.com/512/891/891407.png?ga=GA1.1.1808598779.1757661919" // Cart icon image URL
-          alt="Cart Icon"
-          className=" Icon cart-icon"
-        />
+        {/* Home */}
+        <Link to="/">
+          <img
+            src="https://cdn-icons-png.freepik.com/512/13012/13012364.png"
+            alt="Home"
+            className="Icon home-icon"
+          />
         </Link>
 
+        {/* Cart */}
+        <Link to="/cart">
+          <img
+            src="https://cdn-icons-png.freepik.com/512/891/891407.png"
+            alt="Cart"
+            className="Icon cart-icon"
+          />
+        </Link>
 
-
-
+        {/* Auth Section */}
         {isLoggedIn ? (
-          <div className="profile">
-            <span><img
-          src="https://cdn-icons-png.freepik.com/512/3385/3385324.png?ga=GA1.1.1808598779.1757661919" // profile
-          alt="Cart Icon"
-          className=" Icon profile-icon"
-        />
-</span>
-            <button onClick={handleLogout} className="btn-logout">
-                <img
-          src=" https://cdn-icons-png.freepik.com/512/4034/4034229.png?ga=GA1.1.1808598779.1757661919" // Logout
-          alt="Cart Icon"
-          className=" Icon logout-icon"
-        /></button>
-          </div>
+          <button onClick={handleLogout} className="btn-logout">
+            <img
+              src="https://cdn-icons-png.freepik.com/512/4034/4034229.png"
+              alt="Logout"
+              className="Icon logout-icon"
+            />
+        
+          </button>
         ) : (
-          <>
+          <div className="auth-buttons">
             <Link to="/login?mode=login" className="btn-login">Login</Link>
             <Link to="/login?mode=signup" className="btn-signup">Sign Up</Link>
-          </>
+          </div>
         )}
       </div>
     </header>
