@@ -6,7 +6,9 @@ import Products from './pages/Products';
 import Cart from './components/Cart';
 import Delivery from './pages/Delivery';
 import LoginSignup from './pages/LoginSignup';
-import OrderConfirm from './pages/OrderConfirm';
+import OrderConfirm from "./pages/OrderConfirm";// ✅ OrderConfirm import
+
+
 
 function App() {
   const [cartItems, setCartItems] = useState([]);

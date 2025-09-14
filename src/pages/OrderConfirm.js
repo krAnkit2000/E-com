@@ -1,8 +1,7 @@
-// src/pages/OrderConfirm.js
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import './OrderConfirm.css'; // reuse ya alag CSS
-
+import './Delivery.css'; // reuse CSS or create new
+import './OrderConfirm.css';
 const OrderConfirm = () => {
   const navigate = useNavigate();
 
