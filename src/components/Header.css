@@ -1,86 +1,4 @@
 
-
-.header {
-  position: fixed;         /* 👈 header ko fix kar diya */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 60px;            /* ek fixed height de do (adjust kar sakte ho) */
-  background-color: #e9e5e4;
-  padding: 0 1rem;         /* upar niche extra padding hata do */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-sizing: border-box;
-  z-index: 1000;           /* content ke upar rahe */
-}
-
-
-.logo a {
-  font-size: 12px;
-  color: white;
-  text-decoration: none;
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.nav a {
-  color: white;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-.nav a:hover {
-  background-color: #0056b3;
-}
-
-.profile {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.profile span {
-  font-size: 1rem;
-}
-
-.btn-logout {
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
-.btn-logout:hover {
-
-  /* padding: 2px; */
-  /* height: 30px; */
-  background-color: #ad404b;
-  border-radius: 10px;
-}
-
-.btn-login, .btn-signup {
-  background-color: #28a745;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  text-decoration: none;
-}
-
-.btn-login:hover, .btn-signup:hover {
-  background-color: #218838;
-}
-
-.Icon {
-  width: 30px;
-  height: 30px;
-}
-
 /* Make the header more responsive */
 @media (max-width: 768px) {
   .header {
@@ -121,14 +39,14 @@
     font-size: 12px;
   }
 }
-/* Logo with animated rainbow effect */
+
 .logo.product-list {
-  font-size:15px; /* Adjust font size as needed */
+  font-size:15px; 
   font-weight: bold;
 }
 
 .logo.product-list a {
-  background: linear-gradient(45deg, rgb(27, 2, 255), rgb(255, 5, 26), rgb(0, 255, 21), rgb(239, 199, 69), rgb(2, 10, 12), rgb(48, 4, 48));
+  background: linear-gradient(45deg, rgb(27, 2, 255), rgb(255, 5, 26), rgb(0, 255, 21), rgb(239, 199, 69), rgb(255, 255, 255), rgb(48, 4, 48));
   -webkit-background-clip: text; /* Required for WebKit-based browsers (like Chrome and Safari) */
   color: transparent; /* Make text color transparent so gradient shows through */
   animation: rainbow 5s ease infinite; /* Animation for color change */
@@ -147,6 +65,77 @@
     background-position: 0% 50%;
   }
 }
-.auth-buttons{
-  width: 8rem;
+
+
+
+/*  */
+
+/* src/components/Header.css */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #e9e5e4;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  z-index: 1000;
 }
+
+.logo a {
+  color: white;
+  text-decoration: none;
+  font-size: 24px;
+}
+
+.menu-wrapper {
+  position: relative;
+}
+
+.menu-btn {
+  width: 3rem;
+  font-size: 30px;
+  background: none;
+  border: none;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+.dropdown {
+  position: absolute;
+  top: 3.5em;
+
+  right: -13px;
+  background: #585353;
+  border: 1px solid #444;
+  border-radius: 5px;
+  display: flex
+;
+  flex-direction: column;
+  min-width: 147px;
+  z-index: 10;
+}
+
+.dropdown a,
+.dropdown button {
+  padding: 10px 15px;
+  color: white;
+  text-decoration: none;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.dropdown a:hover,
+.dropdown button:hover {
+  background: #b66464;
+}
+
+/*  */

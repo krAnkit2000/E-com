@@ -6,9 +6,8 @@ import Products from './pages/Products';
 import Cart from './components/Cart';
 import Delivery from './pages/Delivery';
 import LoginSignup from './pages/LoginSignup';
-import OrderConfirm from "./pages/OrderConfirm";// ✅ OrderConfirm import
-
-
+import OrderConfirm from "./pages/order-confirm"; // OrderConfirm component
+import Order from './pages/Order'; // Order component
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -31,23 +30,49 @@ function App() {
       />
 
       <Routes>
+        {/* Home / Products */}
         <Route path="/" element={<Products addToCart={addToCart} />} />
+
+        {/* Cart Page */}
         <Route 
           path="/cart"
-          element={<Cart cartItems={cartItems} removeFromCart={removeFromCart} clearCart={clearCart} isLoggedIn={isLoggedIn} />} 
+          element={
+            <Cart 
+              cartItems={cartItems} 
+              removeFromCart={removeFromCart} 
+              clearCart={clearCart} 
+              isLoggedIn={isLoggedIn} 
+            />} 
         />
+
+        {/* Delivery Page (Login Protected) */}
         <Route 
           path="/delivery"
-          element={isLoggedIn ? <Delivery cartItems={cartItems} clearCart={clearCart} /> : <Navigate to="/login" />} 
+          element={
+            isLoggedIn ? <Delivery cartItems={cartItems} clearCart={clearCart} /> : <Navigate to="/login" />
+          } 
         />
-        <Route 
-          path="/OrderConfirm"
-          element={isLoggedIn ? <OrderConfirm /> : <Navigate to="/login" />} 
-        />
+
+        {/* Login / Signup */}
         <Route 
           path="/login"
           element={<LoginSignup setIsLoggedIn={setIsLoggedIn} setUsername={setUsername} />}
         />
+
+        {/* Order Confirm Page */}
+        <Route 
+          path="/orderconfirm"
+          element={isLoggedIn ? <OrderConfirm /> : <Navigate to="/login" />}
+        />
+
+        {/* Orders Page */}
+        <Route 
+          path="/orders"
+          element={isLoggedIn ? <Order /> : <Navigate to="/login" />}
+        />
+
+        {/* Fallback route */}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
   );
