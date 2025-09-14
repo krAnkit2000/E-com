@@ -25,7 +25,7 @@ const Delivery = ({ cartItems, clearCart }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     clearCart();              // Cart clear
-    navigate('/order-confirm'); // Redirect to OrderConfirm
+    navigate('/orderconfirm'); // Redirect to OrderConfirm
   };
 
   return (
