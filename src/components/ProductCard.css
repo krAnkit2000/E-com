@@ -2,13 +2,15 @@
 .product-main {
   border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 1rem;
+  padding: 0.5rem;
   background-color: #ffffff;
   box-shadow: inset -2px -8px 12px 3px rgba(0, 0, 0, 0.1);
 }
 /* Container for the product card */
 
- 
+.product-main h3{
+margin: 0;
+}
 
 .product-card {
   border: 1px solid #ddd;
@@ -33,6 +35,7 @@
 }
 
 .btn-add-to-cart {
+  margin-bottom: 5px;
   background-color: #3a43b6;
   border: none;
   color: white;

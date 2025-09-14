@@ -15,11 +15,11 @@ const ProductCard = ({ product, addToCart }) => {
 
   return (
     <div className='product-main'>
-    <img
-    src={product.image}
-    alt={product.name}
-    className="product-img"
-  />
+      <img
+  src={product.image}
+  alt={product.name}
+  className="product-img"
+/>
       <h3>{product.name}</h3>
       <p>{formattedPrice}</p> {/* Show formatted price in INR */}
       <button className='btn-add-to-cart' onClick={() => addToCart(product)} style={{ marginTop: '10px' }}>

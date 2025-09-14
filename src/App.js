@@ -6,7 +6,7 @@ import Products from './pages/Products';
 import Cart from './components/Cart';
 import Delivery from './pages/Delivery';
 import LoginSignup from './pages/LoginSignup';
-import OrderConfirm from './pages/OrderConfirm'; // OrderConfirm path correct kare
+import OrderConfirm from './pages/OrderConfirm';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -39,7 +39,7 @@ function App() {
           element={isLoggedIn ? <Delivery cartItems={cartItems} clearCart={clearCart} /> : <Navigate to="/login" />} 
         />
         <Route 
-          path="/order-confirm"
+          path="/OrderConfirm"
           element={isLoggedIn ? <OrderConfirm /> : <Navigate to="/login" />} 
         />
         <Route 

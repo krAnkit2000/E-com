@@ -5,7 +5,7 @@ import './Product.css';
 
 
 
-const sampleProducts = Array.from({ length: 10000 }, (_, i) => ({
+const sampleProducts = Array.from({ length: 1000 }, (_, i) => ({
   id: i + 1,
   name: `Product ${i + 1}`,  // Ensure the product name follows sequence (Product 1, Product 2, ...)
   price: (Math.random() * 100 + 10).toFixed(2),
