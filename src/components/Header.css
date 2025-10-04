@@ -20,6 +20,9 @@
     margin-top: 1rem;
   } */
 
+  .btn-signup{
+    width: 4rem !important;
+  }
   .btn-login, .btn-signup, .btn-logout {
     width: 30%;
     padding: 0;
