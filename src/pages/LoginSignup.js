@@ -38,7 +38,7 @@ const LoginSignup = ({ setIsLoggedIn, setUsername }) => {
       setUsername(username);
       localStorage.setItem('isLoggedIn', 'true');
       localStorage.setItem('username', username);
-      alert('Login Successful!');
+      alert('Login Successful! ✅️');
 
       // Check if the user came from the cart page
       const fromCart = sessionStorage.getItem('fromCart');
@@ -49,7 +49,7 @@ const LoginSignup = ({ setIsLoggedIn, setUsername }) => {
         navigate('/');  // Redirect to the delivery page
       }
     } else {
-      alert('Invalid username or password');
+      alert('Invalid username or password ❌');
     }
   };
 
@@ -62,11 +62,11 @@ const LoginSignup = ({ setIsLoggedIn, setUsername }) => {
     }
     users.push({ username, password });
     saveUsers(users);
-    alert('Signup Successful! Please login now.');
+    alert('Signup Successful! Please login now. ✅️');
     setIsLogin(true);
     setUsernameInput('');
     setPassword('');
-    navigate('/login?mode=login'); // Redirect to login after signup
+    navigate('/login?mode=login'); 
   };
 
   const handleSubmit = (e) => {
@@ -81,7 +81,7 @@ const LoginSignup = ({ setIsLoggedIn, setUsername }) => {
   return (
     <div className="login-signup-container">
       <form className="login-signup-form" onSubmit={handleSubmit}>
-        <h2>{isLogin ? 'Login' : 'Sign Up'}</h2>
+        <h2>{isLogin ? 'Login 👨🏻‍💻' : 'Sign Up 🔐'}</h2>
 
         <input
           type="text"
