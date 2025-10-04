@@ -27,10 +27,10 @@ const Order = () => {
   }, []);
 
   return (
-    <div style={{ padding: '80px 20px' }}>
-      <h2  className='orders' style={{ textAlign: 'center', marginBottom: '30px' }}>Your Orders
+    <div style={{ padding: '20px 10px' }}>
+      <h2  className='orders' >Your Orders
 
-      <img  className='menu_btn' src="https://cdn-icons-png.flaticon.com/128/6811/6811605.png" alt="Your Orders" />
+      <img  className='menu_btn' src="	https://cdn-icons-png.flaticon.com/512/11345/11345962.png" alt="Your Orders" />
 
 
       </h2>

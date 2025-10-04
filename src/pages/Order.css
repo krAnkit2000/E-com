@@ -1,11 +1,17 @@
 
+
+
+ .orders{
+    padding: 2rem;
+    text-align: center;
+    color: #ff7575;
+    text-shadow: 1px 4px 2px #154c15;
+ }
  .menu_btn {
-    width: 4rem;
-    font-size: 35px;
+    width: 3rem;
+    font-size: 32px;
     background: none;
- 
-    cursor: pointer;
-    height: 37px;
+    height: 49px;
     margin: -6px;
     margin-inline-start: 9px;
   }
