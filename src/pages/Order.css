@@ -1,0 +1,70 @@
+
+ .menu_btn {
+    width: 4rem;
+    font-size: 35px;
+    background: none;
+ 
+    cursor: pointer;
+    height: 37px;
+    margin: -6px;
+    margin-inline-start: 9px;
+  }
+.orders-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center; /* center align cards */
+    padding: 10px;
+  }
+  
+  .order-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 250px; /* max width for larger screens */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+    background: #fff;
+  }
+  
+  .order-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .order-image {
+    width: 100%;
+    height: 0;
+    padding-bottom: 75%; /* maintain aspect ratio */
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .order-info h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+  }
+  
+  .order-info p {
+    margin: 2px 0;
+    font-size: 0.9rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .order-card {
+      max-width: 45%; /* 2 cards per row on tablets */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .order-card {
+      max-width: 100%; /* 1 card per row on mobile */
+    }
+  }
+  

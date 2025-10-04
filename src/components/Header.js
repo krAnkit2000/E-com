@@ -28,7 +28,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn, username, setUsername }) => {
       <div className="menu-wrapper">
         {/* Hamburger/Menu Button */}
         <button className="menu-btn" onClick={toggleMenu}>
-         <img  className='menu-btn' src="https://cdn-icons-png.flaticon.com/512/8166/8166537.png" alt="menu" />
+         <img  className='menu-btn' src="https://cdn-icons-png.flaticon.com/512/17940/17940801.png" alt="menu" />
         </button>
 
         {/* Dropdown Menu */}

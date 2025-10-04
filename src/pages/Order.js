@@ -1,50 +1,79 @@
 // src/pages/Order.js
 import React, { useEffect, useState } from 'react';
+import './Order.css'; // CSS file for styling cards
+
+// Multiple dummy images for random display
+const dummyImages = [
+  "https://placeimg.com/220/150/fashion",
+  "https://placeimg.com/220/150/people",
+  "https://placeimg.com/220/150/tech",
+  "https://placeimg.com/220/150/nature",
+  "https://placeimg.com/220/150/animals"
+];
 
 const Order = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     const savedOrders = JSON.parse(localStorage.getItem('orders')) || [];
-    setOrders(savedOrders);
+    
+    // Add a random dummy image to each order
+    const ordersWithImages = savedOrders.map(order => ({
+      ...order,
+      image: dummyImages[Math.floor(Math.random() * dummyImages.length)]
+    }));
+    
+    setOrders(ordersWithImages);
   }, []);
 
   return (
     <div style={{ padding: '80px 20px' }}>
-      <h2>Your Orders</h2>
+      <h2  className='orders' style={{ textAlign: 'center', marginBottom: '30px' }}>Your Orders
+
+      <img  className='menu_btn' src="https://cdn-icons-png.flaticon.com/128/6811/6811605.png" alt="Your Orders" />
+
+
+      </h2>
       {orders.length === 0 ? (
-        <p>No orders found.</p>
+        <p style={{ textAlign: 'center' }}>No orders found.</p>
       ) : (
-        <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '20px' }}>
-          <thead>
-            <tr>
-              <th style={thStyle}>Order ID</th>
-              <th style={thStyle}>Product</th>
-              <th style={thStyle}>Quantity</th>
-              <th style={thStyle}>Price (₹)</th>
-              <th style={thStyle}>Date</th>
-              <th style={thStyle}>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {orders.map((order, index) => (
-              <tr key={index}>
-                <td style={tdStyle}>{order.id}</td>
-                <td style={tdStyle}>{order.product}</td>
-                <td style={tdStyle}>{order.quantity}</td>
-                <td style={tdStyle}>{order.price}</td>
-                <td style={tdStyle}>{order.date}</td>
-                <td style={tdStyle}>{order.status}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="orders-container" style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center' }}>
+          {orders.map(order => (
+            <div
+              key={order.id}
+              className="order-card"
+              style={{
+                border: '1px solid #ccc',
+                borderRadius: '10px',
+                padding: '15px',
+                width: '220px',
+                boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
+                transition: 'transform 0.2s',
+                textAlign: 'center',
+              }}
+            >
+              <img
+                src={order.image}
+                alt={order.product}
+                style={{
+                  width: '100%',
+                  height: '150px',
+                  objectFit: 'cover',
+                  borderRadius: '8px',
+                  marginBottom: '10px'
+                }}
+              />
+              <h4 style={{ margin: '10px 0 5px' }}>{order.product}</h4>
+              <p>Qty: {order.quantity}</p>
+              <p>Price: ₹{order.price}</p>
+              <p>Date: {order.date}</p>
+              <p>Status: {order.status}</p>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );
 };
-
-const thStyle = { border: '1px solid #ccc', padding: '10px', background: '#f5f5f5', textAlign: 'left' };
-const tdStyle = { border: '1px solid #ccc', padding: '10px' };
 
 export default Order;
