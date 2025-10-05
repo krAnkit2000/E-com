@@ -38,11 +38,12 @@ function App() {
           path="/cart"
           element={
             <Cart 
-              cartItems={cartItems} 
-              removeFromCart={removeFromCart} 
-              clearCart={clearCart} 
-              isLoggedIn={isLoggedIn} 
-            />} 
+            cartItems={cartItems} 
+            setCartItems={setCartItems}   // 👈 yeh add karo
+            removeFromCart={removeFromCart} 
+            clearCart={clearCart} 
+            isLoggedIn={isLoggedIn} 
+          />} 
         />
 
         {/* Delivery Page (Login Protected) */}

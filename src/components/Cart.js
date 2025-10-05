@@ -3,11 +3,22 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Cart.css';
 
-const Cart = ({ cartItems, removeFromCart, clearCart, isLoggedIn }) => {
+const Cart = ({ cartItems, setCartItems, removeFromCart, clearCart, isLoggedIn }) => {
   const navigate = useNavigate();
 
+  // Update quantity
+  const updateQuantity = (index, newQty) => {
+    if (newQty < 1) return; // Prevent 0 or negative quantity
+    const updatedCart = [...cartItems];
+    updatedCart[index].quantity = newQty;
+    setCartItems(updatedCart);
+  };
+
   // Calculate total price
-  const total = cartItems.reduce((sum, item) => sum + Number(item.price), 0);
+  const total = cartItems.reduce(
+    (sum, item) => sum + Number(item.price) * (item.quantity || 1),
+    0
+  );
 
   // Format price in Indian currency
   const formatINR = (value) =>
@@ -21,7 +32,6 @@ const Cart = ({ cartItems, removeFromCart, clearCart, isLoggedIn }) => {
     if (isLoggedIn) {
       navigate('/delivery');
     } else {
-      // Store that the user is coming from cart and redirect to login
       sessionStorage.setItem('fromCart', 'true');
       navigate('/login');
     }
@@ -31,7 +41,7 @@ const Cart = ({ cartItems, removeFromCart, clearCart, isLoggedIn }) => {
     <div className="cart-container">
       {cartItems.length === 0 ? (
         <img
-          src="https://cdn-icons-png.flaticon.com/512/15017/15017806.png" // Empty cart icon
+          src="https://cdn-icons-png.flaticon.com/512/15017/15017806.png"
           alt="Empty Cart"
           className="emptycart-icon"
         />
@@ -43,8 +53,16 @@ const Cart = ({ cartItems, removeFromCart, clearCart, isLoggedIn }) => {
                 <img src={item.image} alt={item.name} className="cart-item-img" />
                 <div className="cart-item-info">
                   <h4>{item.name}</h4>
-                  <p>{formatINR(Number(item.price))}</p>
+                  <p>{formatINR(Number(item.price) * (item.quantity || 1))}</p>
+
+                  {/* Quantity controls */}
+                  <div className="quantity-controls">
+                    <button onClick={() => updateQuantity(index, (item.quantity || 1) - 1)}>-</button>
+                    <span>{item.quantity || 1}</span>
+                    <button onClick={() => updateQuantity(index, (item.quantity || 1) + 1)}>+</button>
+                  </div>
                 </div>
+
                 <button onClick={() => removeFromCart(index)} className="btn-remove">
                   Remove
                 </button>
@@ -55,17 +73,16 @@ const Cart = ({ cartItems, removeFromCart, clearCart, isLoggedIn }) => {
           <h3>Total: {formatINR(total)}</h3>
 
           <div className="cart-buttons">
-
             <button
-            onClick={() => {
-              if (window.confirm("Are you sure you want to  🧹 clear the cart?")) {
-                clearCart();
-              }
-            }}
-            className="btn-clear"
-          >
-            Clear Cart
-          </button>
+              onClick={() => {
+                if (window.confirm("Are you sure you want to 🧹 clear the cart?")) {
+                  clearCart();
+                }
+              }}
+              className="btn-clear"
+            >
+              Clear Cart
+            </button>
             <button onClick={handlePlaceOrder} className="btn-place-order">
               Place Order
             </button>

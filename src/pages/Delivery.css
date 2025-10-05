@@ -99,3 +99,18 @@
 .payment{
   margin: 0;
 }
+
+
+.phone-input {
+  width: 100% !important;
+  height: 40px !important;
+  padding-left: 48px !important; /* space for flag */
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.phone-flag {
+  border: none !important;
+  background: transparent !important;
+}

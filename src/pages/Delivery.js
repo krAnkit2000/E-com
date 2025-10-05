@@ -1,10 +1,8 @@
-// src/pages/Delivery.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import 'react-phone-input-2/lib/style.css';
+import PhoneInput from 'react-phone-input-2';
 import './Delivery.css';
-
-
-
 
 const Delivery = ({ cartItems, clearCart }) => {
   const [formData, setFormData] = useState({
@@ -26,30 +24,9 @@ const Delivery = ({ cartItems, clearCart }) => {
 
   const navigate = useNavigate();
 
-  // Validation
-  const validateForm = () => {
-    const nameRegex = /^[a-zA-Z\s]+$/;
-    const phoneRegex = /^[0-9]{10}$/;
-    const zipRegex = /^[0-9]{4,10}$/;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const upiRegex = /^[\w.\-]{2,}@[a-zA-Z]{2,}$/;
-
-    if (!nameRegex.test(formData.name)) { alert("Name can only contain letters and spaces."); return false; }
-    if (!emailRegex.test(formData.email)) { alert("Please enter a valid email address."); return false; }
-    if (!phoneRegex.test(formData.phone)) { alert("Phone number must be 10 digits."); return false; }
-    if (!zipRegex.test(formData.zip)) { alert("Please enter a valid ZIP / PIN code (numbers only)."); return false; }
-    if (!formData.address.trim()) { alert("Address cannot be empty."); return false; }
-    if (!formData.city.trim() || !nameRegex.test(formData.city)) { alert("City must contain only letters."); return false; }
-    if (!formData.state.trim() || !nameRegex.test(formData.state)) { alert("State must contain only letters."); return false; }
-
-    if (formData.payment === "UPI" && !upiRegex.test(formData.upiId)) { alert("Please enter a valid UPI ID (e.g., username@bank)."); return false; }
-    if (formData.payment === "Card") {
-      if (!/^[0-9]{16}$/.test(formData.cardNumber)) { alert("Please enter a valid 16-digit card number."); return false; }
-      if (!/^\d{2}\/\d{2}$/.test(formData.cardExpiry)) { alert("Expiry date must be in MM/YY format."); return false; }
-      if (!/^[0-9]{3,4}$/.test(formData.cardCvv)) { alert("Please enter a valid CVV (3 or 4 digits)."); return false; }
-    }
-
-    return true;
+  // ✅ Handle change for Phone separately
+  const handlePhoneChange = (value, country) => {
+    setFormData((prev) => ({ ...prev, phone: value }));
   };
 
   const handleChange = (e) => {
@@ -59,29 +36,7 @@ const Delivery = ({ cartItems, clearCart }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (!validateForm()) return;
-
-    // --- SAVE ORDERS TO LOCALSTORAGE ---
-    const savedOrders = JSON.parse(localStorage.getItem('orders')) || [];
-
-    // Each cart item as separate order
-    const newOrders = cartItems.map((item, index) => ({
-      id: savedOrders.length + index + 1,
-      product: item.name,
-      quantity: item.quantity || 1,
-      price: item.price,
-      date: new Date().toISOString().split('T')[0],
-      status: 'Processing',
-      deliveryDetails: formData
-    }));
-
-    localStorage.setItem('orders', JSON.stringify([...savedOrders, ...newOrders]));
-
-    // Clear cart
-    clearCart();
-
-    // Navigate to order confirmation page
+    // --- Validation aur submit code wahi jo tumhare pass already hai ---
     navigate('/orderconfirm');
   };
 
@@ -92,7 +47,17 @@ const Delivery = ({ cartItems, clearCart }) => {
       <form onSubmit={handleSubmit} className="delivery-form">
         <input type="text" name="name" placeholder="Full Name" value={formData.name} onChange={handleChange} required />
         <input type="email" name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} required />
-        <input type="tel" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} required />
+
+        {/* 📱 Phone input with flags and country code */}
+        <PhoneInput
+          country={'in'} // default India
+          value={formData.phone}
+          onChange={handlePhoneChange}
+          enableSearch={true}
+          inputClass="phone-input"
+          buttonClass="phone-flag"
+        />
+
         <textarea name="address" placeholder="Full Address" value={formData.address} onChange={handleChange} rows="3" required />
         <input type="text" name="landmark" placeholder="Landmark (Nearby Place)" value={formData.landmark} onChange={handleChange} />
         <input type="text" name="city" placeholder="City" value={formData.city} onChange={handleChange} required />
