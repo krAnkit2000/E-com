@@ -122,7 +122,6 @@
 
 // export default LoginSignup;
 
-
 // src/pages/LoginSignup.js
 import React, { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -130,20 +129,14 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
-  RecaptchaVerifier,
-  signInWithPhoneNumber,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 import "./LoginSignup.css";
 
 const LoginSignup = ({ setIsLoggedIn, setUsername }) => {
   const [isLogin, setIsLogin] = useState(true);
-  const [isPhoneMode, setIsPhoneMode] = useState(false); // email or phone mode
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
-  const [otp, setOtp] = useState("");
-  const [verificationResult, setVerificationResult] = useState(null);
   const navigate = useNavigate();
 
   const [searchParams] = useSearchParams();
@@ -153,51 +146,7 @@ const LoginSignup = ({ setIsLoggedIn, setUsername }) => {
     setIsLogin(mode !== "signup");
   }, [mode]);
 
-  // Setup Recaptcha
-  const setupRecaptcha = () => {
-    if (!window.recaptchaVerifier) {
-      window.recaptchaVerifier = new RecaptchaVerifier(
-        "recaptcha-container",
-        {
-          size: "invisible",
-        },
-        auth
-      );
-    }
-  };
-
-  // Send OTP for mobile
-  const sendOtp = async () => {
-    if (!phone) return alert("Please enter phone number");
-    setupRecaptcha();
-    const appVerifier = window.recaptchaVerifier;
-    try {
-      const confirmation = await signInWithPhoneNumber(auth, phone, appVerifier);
-      setVerificationResult(confirmation);
-      alert("OTP sent successfully ✅");
-    } catch (error) {
-      console.error(error);
-      alert("Error sending OTP ❌");
-    }
-  };
-
-  // Verify OTP
-  const verifyOtp = async () => {
-    if (!otp || !verificationResult) return alert("Please enter OTP");
-    try {
-      await verificationResult.confirm(otp);
-      alert("Login Successful ✅");
-      setIsLoggedIn(true);
-      setUsername(phone);
-      localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("username", phone);
-      navigate("/");
-    } catch (error) {
-      alert("Invalid OTP ❌");
-    }
-  };
-
-  // Email/Password Login
+  // 🔹 Email/Password Login
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
@@ -212,11 +161,11 @@ const LoginSignup = ({ setIsLoggedIn, setUsername }) => {
     }
   };
 
-  // Email/Password Signup
+  // 🔹 Email/Password Signup
   const handleSignup = async () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      alert("Signup Successful ✅");
+      alert("Signup Successful ✅ Now you can login.");
       setIsLogin(true);
       setEmail("");
       setPassword("");
@@ -226,7 +175,7 @@ const LoginSignup = ({ setIsLoggedIn, setUsername }) => {
     }
   };
 
-  // Forgot password
+  // 🔹 Forgot password
   const handleForgotPassword = async () => {
     if (!email) return alert("Enter your registered email first");
     try {
@@ -237,18 +186,11 @@ const LoginSignup = ({ setIsLoggedIn, setUsername }) => {
     }
   };
 
+  // 🔹 Handle submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (isPhoneMode) {
-      if (verificationResult) {
-        verifyOtp();
-      } else {
-        sendOtp();
-      }
-    } else {
-      if (isLogin) handleLogin();
-      else handleSignup();
-    }
+    if (isLogin) handleLogin();
+    else handleSignup();
   };
 
   return (
@@ -256,65 +198,27 @@ const LoginSignup = ({ setIsLoggedIn, setUsername }) => {
       <form className="login-signup-form" onSubmit={handleSubmit}>
         <h2>{isLogin ? "Login 👨🏻‍💻" : "Sign Up 🔐"}</h2>
 
-        {/* Toggle between email & phone login */}
-        <p className="toggle-text">
-          Login with{" "}
-          <span
-            onClick={() => setIsPhoneMode(!isPhoneMode)}
-            className="toggle-link"
-          >
-            {isPhoneMode ? "Email" : "Phone"}
-          </span>
-        </p>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
 
-        {isPhoneMode ? (
-          <>
-            <input
-              type="tel"
-              placeholder="+91XXXXXXXXXX"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              required
-            />
-            {verificationResult && (
-              <input
-                type="text"
-                placeholder="Enter OTP"
-                value={otp}
-                onChange={(e) => setOtp(e.target.value)}
-              />
-            )}
-          </>
-        ) : (
-          <>
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </>
-        )}
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
 
         <button type="submit" className="btn-submit">
-          {isPhoneMode
-            ? verificationResult
-              ? "Verify OTP"
-              : "Send OTP"
-            : isLogin
-            ? "Login"
-            : "Sign Up"}
+          {isLogin ? "Login" : "Sign Up"}
         </button>
 
-        {!isPhoneMode && isLogin && (
+        {isLogin && (
           <p
             onClick={handleForgotPassword}
             style={{ color: "#007bff", cursor: "pointer", marginTop: "10px" }}
@@ -336,15 +240,11 @@ const LoginSignup = ({ setIsLoggedIn, setUsername }) => {
           </span>
         </p>
       </form>
-
-      {/* Invisible reCAPTCHA for phone auth */}
-      <div id="recaptcha-container"></div>
     </div>
   );
 };
 
 export default LoginSignup;
-
 
 
 
