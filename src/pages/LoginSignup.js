@@ -121,7 +121,6 @@
 // };
 
 // export default LoginSignup;
-
 // src/pages/LoginSignup.js
 import React, { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -137,6 +136,7 @@ const LoginSignup = ({ setIsLoggedIn, setUsername }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState(""); // new state
   const navigate = useNavigate();
 
   const [searchParams] = useSearchParams();
@@ -161,14 +161,18 @@ const LoginSignup = ({ setIsLoggedIn, setUsername }) => {
     }
   };
 
-  // 🔹 Email/Password Signup
+  // 🔹 Email/Password Signup with Confirm Password
   const handleSignup = async () => {
+    if (password !== confirmPassword) {
+      return alert("Passwords do not match ❌");
+    }
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       alert("Signup Successful ✅ Now you can login.");
       setIsLogin(true);
       setEmail("");
       setPassword("");
+      setConfirmPassword(""); // clear confirm password
       navigate("/login?mode=login");
     } catch (error) {
       alert(error.message);
@@ -214,6 +218,17 @@ const LoginSignup = ({ setIsLoggedIn, setUsername }) => {
           required
         />
 
+        {/* Confirm Password only in signup */}
+        {!isLogin && (
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+        )}
+
         <button type="submit" className="btn-submit">
           {isLogin ? "Login" : "Sign Up"}
         </button>
@@ -245,8 +260,3 @@ const LoginSignup = ({ setIsLoggedIn, setUsername }) => {
 };
 
 export default LoginSignup;
-
-
-
-
-
