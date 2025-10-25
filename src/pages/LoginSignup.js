@@ -133,7 +133,7 @@ import {
   RecaptchaVerifier,
   signInWithPhoneNumber,
 } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth } from "../firebase/firebase";
 import "./LoginSignup.css";
 
 const LoginSignup = ({ setIsLoggedIn, setUsername }) => {
@@ -344,6 +344,7 @@ const LoginSignup = ({ setIsLoggedIn, setUsername }) => {
 };
 
 export default LoginSignup;
+
 
 
 
